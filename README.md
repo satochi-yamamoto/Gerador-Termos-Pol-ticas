@@ -1,0 +1,1 @@
+# Gerador-Termos-Pol-ticas
