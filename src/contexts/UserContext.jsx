@@ -16,28 +16,26 @@ export const UserProvider = ({ children }) => {
   const [documents, setDocuments] = useState([]);
 
   useEffect(() => {
-    // Carregar dados do localStorage
-    const savedUser = localStorage.getItem('user');
-    const savedDocuments = localStorage.getItem('documents');
-    
-    if (savedUser) {
-      setUser(JSON.parse(savedUser));
-    } else {
-      // Usuário padrão (free)
-      const defaultUser = {
-        id: 'user_1',
-        name: 'Usuário Demo',
-        email: 'demo@exemplo.com',
-        plan: 'free', // free ou premium
-        createdAt: new Date().toISOString()
-      };
-      setUser(defaultUser);
-      localStorage.setItem('user', JSON.stringify(defaultUser));
-    }
+    // Limpa qualquer dado persistente anterior e cria usuário padrão apenas em memória
+    localStorage.removeItem('user');
+    localStorage.removeItem('documents');
 
-    if (savedDocuments) {
-      setDocuments(JSON.parse(savedDocuments));
-    }
+    const defaultUser = {
+      id: 'user_1',
+      name: 'Usuário Demo',
+      email: 'demo@exemplo.com',
+      plan: 'free',
+      createdAt: new Date().toISOString()
+    };
+
+    setUser(defaultUser);
+
+    const handleUnload = () => {
+      setDocuments([]);
+      setUser(null);
+    };
+    window.addEventListener('beforeunload', handleUnload);
+    return () => window.removeEventListener('beforeunload', handleUnload);
   }, []);
 
   const saveDocument = (document) => {
@@ -50,29 +48,25 @@ export const UserProvider = ({ children }) => {
     
     const updatedDocuments = [...documents, newDocument];
     setDocuments(updatedDocuments);
-    localStorage.setItem('documents', JSON.stringify(updatedDocuments));
-    
+
     return newDocument;
   };
 
   const updateDocument = (documentId, updates) => {
-    const updatedDocuments = documents.map(doc => 
+    const updatedDocuments = documents.map(doc =>
       doc.id === documentId ? { ...doc, ...updates, updatedAt: new Date().toISOString() } : doc
     );
     setDocuments(updatedDocuments);
-    localStorage.setItem('documents', JSON.stringify(updatedDocuments));
   };
 
   const deleteDocument = (documentId) => {
     const updatedDocuments = documents.filter(doc => doc.id !== documentId);
     setDocuments(updatedDocuments);
-    localStorage.setItem('documents', JSON.stringify(updatedDocuments));
   };
 
   const upgradeToPremium = () => {
     const updatedUser = { ...user, plan: 'premium' };
     setUser(updatedUser);
-    localStorage.setItem('user', JSON.stringify(updatedUser));
   };
 
   const value = {
