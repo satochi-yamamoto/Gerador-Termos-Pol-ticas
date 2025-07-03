@@ -2,18 +2,20 @@
 import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import AdBanner from '@/components/AdBanner';
+import GoogleAd from '@/components/GoogleAd';
+import CookieBanner from '@/components/CookieBanner';
 
 const Layout = ({ children }) => {
   return (
     <div className="min-h-screen flex flex-col">
-      <AdBanner position="top" />
+      <GoogleAd slot="0000000000" />
       <Header />
-      <main className="flex-1">
+      <main className="flex-1 relative">
         {children}
+        <CookieBanner />
       </main>
       <Footer />
-      <AdBanner position="bottom" />
+      <GoogleAd slot="0000000001" />
     </div>
   );
 };
