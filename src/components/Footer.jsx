@@ -12,7 +12,7 @@ const Footer = () => {
               <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
                 <FileText className="w-5 h-5 text-white" />
               </div>
-              <span className="text-lg font-bold gradient-text">LegalGen Pro</span>
+              <span className="text-lg font-bold gradient-text">YD Software</span>
             </div>
             <p className="text-gray-400 text-sm">
               Gerador de documentos legais em conformidade com LGPD e CCPA. 
@@ -37,7 +37,7 @@ const Footer = () => {
             <div className="space-y-2 text-sm text-gray-400">
               <div className="flex items-center space-x-2">
                 <Mail className="w-4 h-4" />
-                <span>contato@legalgen.com</span>
+                <span>contato@ydsoftware.com.br</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Shield className="w-4 h-4" />
@@ -49,7 +49,7 @@ const Footer = () => {
 
         <div className="border-t border-white/10 mt-8 pt-6 text-center">
           <p className="text-gray-400 text-sm">
-            © 2024 LegalGen Pro. Todos os direitos reservados. 
+            © 2024 YD Software. Todos os direitos reservados.
             Sistema 100% local e seguro.
           </p>
         </div>

@@ -22,7 +22,7 @@ export const UserProvider = ({ children }) => {
 
     const defaultUser = {
       id: 'user_1',
-      name: 'Usuário Demo',
+      name: 'Usuário',
       email: 'demo@exemplo.com',
       plan: 'free',
       createdAt: new Date().toISOString()

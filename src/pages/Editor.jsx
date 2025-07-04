@@ -140,7 +140,7 @@ const Editor = () => {
                 />
                 {user?.plan === 'free' && (
                   <div className="watermark">
-                    Gerado por LegalGen Pro - Versão Gratuita
+                    Gerado por YD Software - Versão Gratuita
                   </div>
                 )}
               </div>

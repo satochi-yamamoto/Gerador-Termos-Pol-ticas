@@ -2,22 +2,11 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FileText, Home, Settings, Crown } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { useUser } from '@/contexts/UserContext';
-import { toast } from '@/components/ui/use-toast';
+import { FileText, Home } from 'lucide-react';
 
 const Header = () => {
   const location = useLocation();
-  const { user, upgradeToPremium } = useUser();
-
-  const handleUpgrade = () => {
-    upgradeToPremium();
-    toast({
-      title: "🎉 Upgrade realizado!",
-      description: "Agora você tem acesso premium com documentos sem marca d'água!"
-    });
-  };
+  // Simplified header without user context or upgrade actions
 
   const navItems = [
     { path: '/', icon: Home, label: 'Dashboard' },
@@ -33,7 +22,7 @@ const Header = () => {
               <FileText className="w-6 h-6 text-white" />
             </div>
             <span className="text-xl font-bold gradient-text">
-              LegalGen Pro
+              YD Software
             </span>
           </Link>
 
@@ -59,37 +48,7 @@ const Header = () => {
             })}
           </nav>
 
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-2">
-              {user?.plan === 'premium' ? (
-                <div className="flex items-center space-x-2 px-3 py-1 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 rounded-full border border-yellow-500/30">
-                  <Crown className="w-4 h-4 text-yellow-400" />
-                  <span className="text-sm font-medium text-yellow-400">Premium</span>
-                </div>
-              ) : (
-                <Button
-                  onClick={handleUpgrade}
-                  variant="outline"
-                  size="sm"
-                  className="border-yellow-500/50 text-yellow-400 hover:bg-yellow-500/10"
-                >
-                  <Crown className="w-4 h-4 mr-2" />
-                  Upgrade
-                </Button>
-              )}
-            </div>
-
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                <span className="text-sm font-medium text-white">
-                  {user?.name?.charAt(0) || 'U'}
-                </span>
-              </div>
-              <span className="text-sm text-gray-300 hidden sm:block">
-                {user?.name || 'Usuário'}
-              </span>
-            </div>
-          </div>
+          {/* Intentionally left blank to remove upgrade and user info */}
         </div>
       </div>
     </header>
