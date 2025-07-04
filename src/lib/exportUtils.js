@@ -24,7 +24,7 @@ export const exportToPDF = async (content, fileName, isPremium = false) => {
     // Adicionar marca d'água se for usuário free
     if (!isPremium) {
       const watermark = document.createElement('div');
-      watermark.innerHTML = 'Gerado por LegalGen Pro - Versão Gratuita';
+      watermark.innerHTML = 'Gerado por YD Software - Versão Gratuita';
       watermark.style.cssText = `
         position: absolute;
         bottom: 20px;
@@ -107,7 +107,7 @@ export const exportToHTML = (content, fileName, isPremium = false) => {
 </head>
 <body>
     ${content.replace(/\n/g, '<br>')}
-    ${!isPremium ? '<div class="watermark">Gerado por LegalGen Pro - Versão Gratuita</div>' : ''}
+    ${!isPremium ? '<div class="watermark">Gerado por YD Software - Versão Gratuita</div>' : ''}
 </body>
 </html>`;
 
@@ -133,7 +133,7 @@ export const generatePreview = (content, isPremium = false) => {
   return `
     <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
       ${content.replace(/\n/g, '<br>')}
-      ${!isPremium ? '<div style="position: fixed; bottom: 20px; right: 20px; font-size: 12px; color: #999; opacity: 0.7;">Gerado por LegalGen Pro - Versão Gratuita</div>' : ''}
+      ${!isPremium ? '<div style="position: fixed; bottom: 20px; right: 20px; font-size: 12px; color: #999; opacity: 0.7;">Gerado por YD Software - Versão Gratuita</div>' : ''}
     </div>
   `;
 };
