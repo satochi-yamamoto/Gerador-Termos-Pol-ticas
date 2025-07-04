@@ -12,6 +12,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { useUser } from '@/contexts/UserContext';
 import { generateDocument } from '@/lib/documentGenerator';
 import { toast } from '@/components/ui/use-toast';
+import { canGenerate, recordGeneration, MAX_DOCS_PER_DAY } from '@/lib/rateLimiter';
 
 const Generator = () => {
   const navigate = useNavigate();
@@ -118,7 +119,16 @@ const Generator = () => {
     }));
   };
 
-  const handleGenerate = () => {
+  const handleGenerate = async () => {
+    const allowed = await canGenerate();
+    if (!allowed) {
+      toast({
+        title: "Limite diário atingido",
+        description: `Você pode gerar até ${MAX_DOCS_PER_DAY} documentos em 24h.`,
+        variant: "destructive"
+      });
+      return;
+    }
     if (selectedTypes.length === 0) {
       toast({
         title: "Erro",
@@ -148,6 +158,8 @@ const Generator = () => {
         content: generatedContent,
         ...formData
       });
+
+      await recordGeneration();
 
       toast({
         title: "✅ Documento gerado!",
