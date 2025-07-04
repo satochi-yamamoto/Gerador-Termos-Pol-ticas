@@ -5,7 +5,8 @@ Este projeto é um gerador de documentos legais como Política de Privacidade, T
 ## Funcionalidades
 
 - Cria documentos legais em conformidade com a LGPD e outras legislações.
-- Armazena dados somente em memória: nenhuma informação fornecida é gravada de forma permanente no navegador.
+- Armazena dados apenas temporariamente em memória e no `localStorage` para controle de uso. Nenhuma informação de documentos é mantida após o término da sessão.
+- Limita a geração a 5 documentos por endereço IP a cada período de 24 horas.
 - Banner de cookies exibido na primeira visita informando que os dados são descartados após o uso.
 - Espaços reservados para banners do Google AdSense no topo e no rodapé.
 
