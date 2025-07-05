@@ -39,6 +39,16 @@ Os valores de `data-ad-client` e `data-ad-slot` nos componentes de anúncio pode
 - `src/pages`: páginas principais do aplicativo.
 - `public` e `index.html`: arquivos estáticos e ponto de entrada da aplicação.
 
+## Docker
+
+Para construir a imagem de produção e executá-la localmente:
+
+```bash
+docker build -t gerador-termos .
+docker run -p 8080:80 gerador-termos
+```
+
+A aplicação ficará disponível em `http://localhost:8080`.
 ## Licença
 
 Este projeto é distribuído sem garantia de suporte ou manutenção. Utilize-o conforme sua necessidade.
